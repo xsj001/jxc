@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yjxxt.jxc.dao.DrugMapper" >
+  <resultMap id="BaseResultMap" type="com.yjxxt.jxc.bean.Drug" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="drug_name" property="drugName" jdbcType="VARCHAR" />
+    <result column="drug_price" property="drugPrice" jdbcType="DOUBLE" />
+    <result column="drug_specification" property="drugSpecification" jdbcType="VARCHAR" />
+    <result column="drug_unit" property="drugUnit" jdbcType="VARCHAR" />
+    <result column="drug_shelf_life" property="drugShelfLife" jdbcType="INTEGER" />
+    <result column="drug_MFG" property="drugMfg" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+    <result column="is_valid" property="isValid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, drug_name, drug_price, drug_specification, drug_unit, drug_shelf_life, drug_MFG, 
+    create_date, update_date, is_valid
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_drug
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_drug
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yjxxt.jxc.bean.Drug" >
+    insert into t_drug (id, drug_name, drug_price, 
+      drug_specification, drug_unit, drug_shelf_life, 
+      drug_MFG, create_date, update_date, 
+      is_valid)
+    values (#{id,jdbcType=INTEGER}, #{drugName,jdbcType=VARCHAR}, #{drugPrice,jdbcType=DOUBLE}, 
+      #{drugSpecification,jdbcType=VARCHAR}, #{drugUnit,jdbcType=VARCHAR}, #{drugShelfLife,jdbcType=INTEGER}, 
+      #{drugMfg,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}, 
+      #{isValid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yjxxt.jxc.bean.Drug" >
+    insert into t_drug
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="drugName != null" >
+        drug_name,
+      </if>
+      <if test="drugPrice != null" >
+        drug_price,
+      </if>
+      <if test="drugSpecification != null" >
+        drug_specification,
+      </if>
+      <if test="drugUnit != null" >
+        drug_unit,
+      </if>
+      <if test="drugShelfLife != null" >
+        drug_shelf_life,
+      </if>
+      <if test="drugMfg != null" >
+        drug_MFG,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="updateDate != null" >
+        update_date,
+      </if>
+      <if test="isValid != null" >
+        is_valid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="drugName != null" >
+        #{drugName,jdbcType=VARCHAR},
+      </if>
+      <if test="drugPrice != null" >
+        #{drugPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="drugSpecification != null" >
+        #{drugSpecification,jdbcType=VARCHAR},
+      </if>
+      <if test="drugUnit != null" >
+        #{drugUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="drugShelfLife != null" >
+        #{drugShelfLife,jdbcType=INTEGER},
+      </if>
+      <if test="drugMfg != null" >
+        #{drugMfg,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isValid != null" >
+        #{isValid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yjxxt.jxc.bean.Drug" >
+    update t_drug
+    <set >
+      <if test="drugName != null" >
+        drug_name = #{drugName,jdbcType=VARCHAR},
+      </if>
+      <if test="drugPrice != null" >
+        drug_price = #{drugPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="drugSpecification != null" >
+        drug_specification = #{drugSpecification,jdbcType=VARCHAR},
+      </if>
+      <if test="drugUnit != null" >
+        drug_unit = #{drugUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="drugShelfLife != null" >
+        drug_shelf_life = #{drugShelfLife,jdbcType=INTEGER},
+      </if>
+      <if test="drugMfg != null" >
+        drug_MFG = #{drugMfg,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isValid != null" >
+        is_valid = #{isValid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yjxxt.jxc.bean.Drug" >
+    update t_drug
+    set drug_name = #{drugName,jdbcType=VARCHAR},
+      drug_price = #{drugPrice,jdbcType=DOUBLE},
+      drug_specification = #{drugSpecification,jdbcType=VARCHAR},
+      drug_unit = #{drugUnit,jdbcType=VARCHAR},
+      drug_shelf_life = #{drugShelfLife,jdbcType=INTEGER},
+      drug_MFG = #{drugMfg,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      is_valid = #{isValid,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectByParams" parameterType="com.yjxxt.jxc.query.DrugQuery" resultType="Drug">
+        select * from t_drug d
+<where>
+  d.is_valid=1
+  <if test="drugName!=null and drugName!=''">
+    and drug_name like concat('%',#{drugName},'%')
+  </if>
+  <if test="drugPrice!=null and drugPrice!=''">
+    and drug_price =#{drugPrice}
+  </if>
+  <if test="drugSpecification!=null and drugSpecification!=''">
+    and drug_specification =#{drugSpecification}
+  </if>
+</where>
+  </select>
+
+  <select id="queryUserByUserUnit" resultType="com.yjxxt.jxc.bean.Drug">
+    select * from t_drug where drug_unit=#{drugUnit}
+  </select>
+  
+  <update id="deleteBatch">
+    update t_drug
+        set is_valid=0
+    where
+        id in
+    <foreach collection="array" item="id" open="(" close=")" separator=",">
+      #{id}
+    </foreach>
+  </update>
+</mapper>
